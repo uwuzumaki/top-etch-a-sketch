@@ -30,11 +30,13 @@ const colourSquare = (e) => {
 const createCanvas = (size) => {
   etch.textContent = "";
   root.style.setProperty("--etch-size", size);
-  root.style.setProperty(
-    "--square-size",
-    Math.ceil((500 / size) * 1e1) / 1e1 + "px"
-  );
-  console.log(Math.ceil((500 / size) * 1e1) / 1e1);
+  const tempBoxSize = Math.round((550 / size) * 1e2) / 1e2;
+  const finalBoxSize =
+    tempBoxSize * size >= 550
+      ? tempBoxSize
+      : Math.ceil((550 / size) * 1e1) / 1e1;
+  root.style.setProperty("--square-size", finalBoxSize + "px");
+  console.log(tempBoxSize, finalBoxSize);
   for (let i = 0; i < size ** 2; i++) {
     const box = document.createElement("div");
     box.setAttribute("id", `box-${i}`);
