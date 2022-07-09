@@ -9,7 +9,8 @@ body {
 }
 
 :root {
-  --etch-size: 16;
+  --etch-size: 16px;
+  --square-size: 12.5px;
 }
 
 .container {
@@ -35,6 +36,8 @@ body {
 .etch-container {
   width: 500px;
   height: 500px;
+  margin: 15px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   display: grid;
   grid-template-columns: repeat(var(--etch-size), 1fr);
   justify-items: center;
@@ -43,8 +46,8 @@ body {
 }
 
 .square {
-  height: calc(500px / var(--etch-size));
-  width: calc(500px / var(--etch-size));
+  height: var(--square-size);
+  width: var(--square-size);
   margin: 0;
   padding: 0;
   background-color: #fff;
@@ -57,4 +60,10 @@ body {
 
 .slider-container {
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#slider {
+  margin-top: 3px;
 }

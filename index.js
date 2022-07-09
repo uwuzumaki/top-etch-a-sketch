@@ -30,6 +30,11 @@ const colourSquare = (e) => {
 const createCanvas = (size) => {
   etch.textContent = "";
   root.style.setProperty("--etch-size", size);
+  root.style.setProperty(
+    "--square-size",
+    Math.ceil((500 / size) * 1e1) / 1e1 + "px"
+  );
+  console.log(Math.ceil((500 / size) * 1e1) / 1e1);
   for (let i = 0; i < size ** 2; i++) {
     const box = document.createElement("div");
     box.setAttribute("id", `box-${i}`);
@@ -52,6 +57,7 @@ const sliderDiv = document.createElement("div");
 sliderDiv.classList.add(".slider-container");
 optionsDiv.appendChild(sliderDiv);
 const sizeOption = document.createElement("input");
+sizeOption.id = "slider";
 sizeOption.setAttribute("type", "range");
 sizeOption.setAttribute("min", "16");
 sizeOption.setAttribute("max", "64");
@@ -61,11 +67,13 @@ sizeOption.addEventListener("input", (e) => {
   console.log(e.target.value);
 });
 sliderDiv.appendChild(sizeOption);
+sliderDiv.insertAdjacentText("afterbegin", "16");
+sliderDiv.insertAdjacentText("beforeend", "64");
 
-const square = document.querySelectorAll(".square");
 const btn = document.createElement("button");
 btn.innerHTML = "reset";
 btn.addEventListener("click", (e) => {
+  const square = document.querySelectorAll(".square");
   square.forEach((obj) => {
     obj.style.backgroundColor = "#fff";
   });
