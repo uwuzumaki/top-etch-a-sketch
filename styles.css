@@ -34,8 +34,8 @@ body {
 }
 
 .etch-container {
-  width: 550px;
-  height: 550px;
+  width: calc(var(--etch-size) * var(--square-size)) px;
+  height: calc(var(--etch-size) * var(--square-size)) px;
   margin: 15px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   display: grid;
@@ -56,6 +56,16 @@ body {
 .options-container {
   display: flex;
   justify-content: space-evenly;
+}
+
+.input-outline {
+  transition: all 1s;
+}
+
+.error {
+  transform: scale(1.1);
+  border-color: red;
+  box-shadow: 0 0 10px red;
 }
 
 .slider-container {

@@ -1,22 +1,23 @@
+//Global Variables and Setters
 let canvasSize = 40;
 let root = document.documentElement;
-root.style.setProperty("--etch-size", canvasSize);
-
 let isClicked = false;
 const setClicked = () => {
   isClicked = !isClicked;
 };
-
 window.addEventListener("mousedown", setClicked);
 window.addEventListener("mouseup", setClicked);
 
+//Main div
 const container = document.querySelector(".container");
 
+//Header
 const headerContainer = document.createElement("div");
 headerContainer.innerHTML = "Etch - A - Sketch";
 headerContainer.classList.add("header-container");
 container.appendChild(headerContainer);
 
+//Etch container
 const etch = document.createElement("div");
 etch.classList.add("etch-container");
 container.appendChild(etch);
@@ -51,9 +52,37 @@ const createCanvas = (size) => {
 
 createCanvas(canvasSize);
 
+//Options container
 const optionsDiv = document.createElement("div");
 optionsDiv.classList.add("options-container");
 container.appendChild(optionsDiv);
+
+const textDiv = document.createElement("div");
+optionsDiv.appendChild(textDiv);
+const textOption = document.createElement("input");
+textOption.id = "text-input";
+textOption.classList.add("input-outline");
+textOption.addEventListener("keyup", (e) => {
+  e.preventDefault();
+  if (e.key === "Enter") {
+    if (isNaN(e.target.value)) {
+      textOption.classList.add("error");
+      e.target.value = "";
+    } else if (e.target.value < 16 || e.target.value > 64) {
+      textOption.classList.add("error");
+      e.target.value = "";
+    } else {
+      createCanvas(e.target.value);
+      e.target.value = "";
+    }
+  }
+});
+
+textOption.addEventListener("transitionend", (e) => {
+  if (e.propertyName !== "transform") return;
+  textOption.classList.remove("error");
+});
+textDiv.appendChild(textOption);
 
 const sliderDiv = document.createElement("div");
 sliderDiv.classList.add(".slider-container");
