@@ -23,8 +23,23 @@ etch.classList.add("etch-container");
 container.appendChild(etch);
 
 const colourSquare = (e) => {
+  const radioOption = document.getElementsByName("brush");
+  let selectedOption;
+  for (let i = 0; i < radioOption.length; i++) {
+    if (radioOption[i].checked) {
+      selectedOption = radioOption[i].value;
+    }
+  }
+  console.log(selectedOption);
+
   if (isClicked) {
-    document.getElementById(e.target.id).style.backgroundColor = "#000000";
+    if (selectedOption === "rainbow") {
+      document.getElementById(e.target.id).style.backgroundColor =
+        "#" + Math.floor(Math.random() * 16777215).toString(16);
+    } else {
+      document.getElementById(e.target.id).style.backgroundColor =
+        document.querySelector(".invisible-button").value;
+    }
   }
 };
 
@@ -37,14 +52,26 @@ const createCanvas = (size) => {
       ? tempBoxSize
       : Math.ceil((550 / size) * 1e1) / 1e1;
   root.style.setProperty("--square-size", finalBoxSize + "px");
-  console.log(tempBoxSize, finalBoxSize);
   for (let i = 0; i < size ** 2; i++) {
     const box = document.createElement("div");
     box.setAttribute("id", `box-${i}`);
     box.classList.add("square");
     box.addEventListener("mouseover", colourSquare);
     box.addEventListener("mousedown", (e) => {
-      document.getElementById(e.target.id).style.backgroundColor = "#000000";
+      const radioOption = document.getElementsByName("brush");
+      let selectedOption;
+      for (let i = 0; i < radioOption.length; i++) {
+        if (radioOption[i].checked) {
+          selectedOption = radioOption[i].value;
+        }
+      }
+      if (selectedOption === "rainbow") {
+        document.getElementById(e.target.id).style.backgroundColor =
+          "#" + Math.floor(Math.random() * 16777215).toString(16);
+      } else {
+        document.getElementById(e.target.id).style.backgroundColor =
+          document.querySelector(".invisible-button").value;
+      }
     });
     etch.appendChild(box);
   }
@@ -58,6 +85,7 @@ optionsDiv.classList.add("options-container");
 container.appendChild(optionsDiv);
 
 const textDiv = document.createElement("div");
+textDiv.classList.add("input-wrapper");
 optionsDiv.appendChild(textDiv);
 const textOption = document.createElement("input");
 textOption.id = "text-input";
@@ -84,23 +112,70 @@ textOption.addEventListener("transitionend", (e) => {
 });
 textDiv.appendChild(textOption);
 
-const sliderDiv = document.createElement("div");
-sliderDiv.classList.add(".slider-container");
-optionsDiv.appendChild(sliderDiv);
-const sizeOption = document.createElement("input");
-sizeOption.id = "slider";
-sizeOption.setAttribute("type", "range");
-sizeOption.setAttribute("min", "16");
-sizeOption.setAttribute("max", "64");
-sizeOption.setAttribute("value", "40");
-sizeOption.addEventListener("input", (e) => {
-  createCanvas(e.target.value);
-  console.log(e.target.value);
-});
-sliderDiv.appendChild(sizeOption);
-sliderDiv.insertAdjacentText("afterbegin", "16");
-sliderDiv.insertAdjacentText("beforeend", "64");
+const centerOption = document.createElement("div");
+centerOption.classList.add("colour-container");
+optionsDiv.appendChild(centerOption);
 
+const brushOne = document.createElement("input");
+brushOne.type = "radio";
+brushOne.name = "brush";
+brushOne.id = "rainbow";
+brushOne.value = "rainbow";
+centerOption.appendChild(brushOne);
+const brushOneLabel = document.createElement("label");
+brushOneLabel.setAttribute("for", "rainbow");
+brushOneLabel.insertAdjacentText("beforeend", "Rainbow");
+centerOption.appendChild(brushOneLabel);
+
+const brushTwo = document.createElement("input");
+brushTwo.type = "radio";
+brushTwo.name = "brush";
+brushTwo.id = "colour-picker";
+brushTwo.value = "colour-picker";
+centerOption.appendChild(brushTwo);
+const brushTwoLabel = document.createElement("label");
+brushTwoLabel.id = "color-picker-label";
+brushTwoLabel.setAttribute("for", "colour-picker");
+brushTwoLabel.insertAdjacentText("beforeend", "Colour Picker");
+centerOption.appendChild(brushTwoLabel);
+brushTwo.addEventListener("click", (e) => {
+  const colorPicker = document.querySelector(".invisible-button");
+  colorPicker.click();
+  document.querySelector(".sample-color").style.backgroundColor =
+    colorPicker.value;
+  console.log(colorPicker.value);
+});
+
+const invisColor = document.createElement("input");
+invisColor.classList.add("invisible-button");
+invisColor.type = "color";
+centerOption.appendChild(invisColor);
+
+const colorPickerValue = document.createElement("div");
+colorPickerValue.classList.add("sample-color");
+colorPickerValue.style.backgroundColor =
+  document.querySelector(".invisible-button").value;
+centerOption.appendChild(colorPickerValue);
+
+// const sliderDiv = document.createElement("div");
+// sliderDiv.classList.add(".slider-container");
+// optionsDiv.appendChild(sliderDiv);
+// const sizeOption = document.createElement("input");
+// sizeOption.id = "slider";
+// sizeOption.setAttribute("type", "range");
+// sizeOption.setAttribute("min", "16");
+// sizeOption.setAttribute("max", "64");
+// sizeOption.setAttribute("value", "40");
+// sizeOption.addEventListener("input", (e) => {
+//   createCanvas(e.target.value);
+// });
+// sliderDiv.appendChild(sizeOption);
+// sliderDiv.insertAdjacentText("afterbegin", "16");
+// sliderDiv.insertAdjacentText("beforeend", "64");
+
+const resetDiv = document.createElement("div");
+resetDiv.classList.add("reset-container");
+optionsDiv.appendChild(resetDiv);
 const btn = document.createElement("button");
 btn.innerHTML = "reset";
 btn.addEventListener("click", (e) => {
@@ -109,4 +184,4 @@ btn.addEventListener("click", (e) => {
     obj.style.backgroundColor = "#fff";
   });
 });
-optionsDiv.appendChild(btn);
+resetDiv.appendChild(btn);
