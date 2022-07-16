@@ -1,11 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 
 *,
 html,
 body {
   margin: 0;
   padding: 0;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
+}
+
+input {
+  margin: 3px;
 }
 
 :root {
@@ -30,7 +34,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 75px;
+  padding: 55px;
 }
 
 .etch-container {
@@ -67,6 +71,14 @@ body {
   padding: 15px;
   border-width: 0;
   border-right: 1px solid grey;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.size-notif-container {
+  font-size: 14px;
 }
 
 #text-input {
@@ -94,7 +106,22 @@ body {
 } */
 
 .colour-container {
-  width: 100px;
+  width: 350px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.radio-container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+#color-picker-label {
+  margin-right: 3px;
 }
 
 .invisible-button {
@@ -110,4 +137,36 @@ body {
   padding: 15px;
   border-width: 0;
   border-left: 1px solid grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reset-btn {
+  background-color: #1565c0;
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  height: 40px;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  outline: none;
+  padding: 10px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: color 100ms;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.reset-btn:hover {
+  background-color: #1b7be9;
 }
