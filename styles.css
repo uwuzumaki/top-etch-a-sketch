@@ -58,17 +58,29 @@ input {
 }
 
 .options-container {
+  display: flex;
+  flex-direction: column;
   margin: 15px;
   padding: 15px;
   border-radius: 8px;
   background-color: white;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.options-upper {
   display: flex;
   justify-content: space-around;
 }
 
+.options-lower {
+  margin: 15px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .input-wrapper {
-  padding: 15px;
+  padding: 15px 30px 15px 15px;
   border-width: 0;
   border-right: 1px solid grey;
   display: flex;
@@ -134,7 +146,7 @@ input {
 }
 
 .reset-container {
-  padding: 15px;
+  padding: 15px 15px 15px 30px;
   border-width: 0;
   border-left: 1px solid grey;
   display: flex;

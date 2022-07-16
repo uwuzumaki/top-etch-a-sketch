@@ -87,9 +87,19 @@ const optionsDiv = document.createElement("div");
 optionsDiv.classList.add("options-container");
 container.appendChild(optionsDiv);
 
+const optionsUpper = document.createElement("div");
+optionsUpper.classList.add("options-upper");
+optionsDiv.appendChild(optionsUpper);
+
+const optionsLower = document.createElement("div");
+optionsLower.classList.add("options-lower");
+optionsLower.innerHTML =
+  "Pick a canvas size between 16 and 64 blocks. Pick a colour or randomize to create a masterpiece!";
+optionsDiv.appendChild(optionsLower);
+
 const textDiv = document.createElement("div");
 textDiv.classList.add("input-wrapper");
-optionsDiv.appendChild(textDiv);
+optionsUpper.appendChild(textDiv);
 const sizeNotif = document.createElement("div");
 sizeNotif.classList.add("size-notif-container");
 sizeNotif.innerHTML = "Size: " + canvasSize;
@@ -122,7 +132,7 @@ textDiv.appendChild(textOption);
 
 const centerOption = document.createElement("div");
 centerOption.classList.add("colour-container");
-optionsDiv.appendChild(centerOption);
+optionsUpper.appendChild(centerOption);
 
 const rainbowDiv = document.createElement("div");
 rainbowDiv.classList.add("radio-container");
@@ -190,7 +200,7 @@ eraserDiv.appendChild(brushThreeLabel);
 // Slider option for canvas size
 // const sliderDiv = document.createElement("div");
 // sliderDiv.classList.add(".slider-container");
-// optionsDiv.appendChild(sliderDiv);
+// optionsUpper.appendChild(sliderDiv);
 // const sizeOption = document.createElement("input");
 // sizeOption.id = "slider";
 // sizeOption.setAttribute("type", "range");
@@ -206,7 +216,7 @@ eraserDiv.appendChild(brushThreeLabel);
 
 const resetDiv = document.createElement("div");
 resetDiv.classList.add("reset-container");
-optionsDiv.appendChild(resetDiv);
+optionsUpper.appendChild(resetDiv);
 const btn = document.createElement("button");
 btn.classList.add("reset-btn");
 btn.innerHTML = "Reset";
