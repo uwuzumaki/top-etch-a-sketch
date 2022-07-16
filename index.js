@@ -197,23 +197,6 @@ brushThreeLabel.setAttribute("for", "eraser-picker");
 brushThreeLabel.insertAdjacentText("beforeend", "Eraser");
 eraserDiv.appendChild(brushThreeLabel);
 
-// Slider option for canvas size
-// const sliderDiv = document.createElement("div");
-// sliderDiv.classList.add(".slider-container");
-// optionsUpper.appendChild(sliderDiv);
-// const sizeOption = document.createElement("input");
-// sizeOption.id = "slider";
-// sizeOption.setAttribute("type", "range");
-// sizeOption.setAttribute("min", "16");
-// sizeOption.setAttribute("max", "64");
-// sizeOption.setAttribute("value", "40");
-// sizeOption.addEventListener("input", (e) => {
-//   createCanvas(e.target.value);
-// });
-// sliderDiv.appendChild(sizeOption);
-// sliderDiv.insertAdjacentText("afterbegin", "16");
-// sliderDiv.insertAdjacentText("beforeend", "64");
-
 const resetDiv = document.createElement("div");
 resetDiv.classList.add("reset-container");
 optionsUpper.appendChild(resetDiv);
@@ -227,3 +210,18 @@ btn.addEventListener("click", (e) => {
   });
 });
 resetDiv.appendChild(btn);
+
+const footer = document.createElement("div");
+footer.classList.add("footer");
+const bodyElement = document.querySelector("body");
+bodyElement.appendChild(footer);
+const githubMark = document.createElement("img");
+githubMark.classList.add("github-img");
+githubMark.src = "assets/images/github-dark.png";
+githubMark.alt = "Github logo";
+const link = document.createElement("a");
+link.classList.add("github-link");
+link.href = "https://github.com/uwuzumaki/top-etch-a-sketch";
+link.appendChild(githubMark);
+link.insertAdjacentText("beforeend", "uwuzumaki");
+footer.appendChild(link);

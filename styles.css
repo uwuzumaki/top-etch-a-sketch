@@ -34,7 +34,7 @@ input {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 55px;
+  margin: 35px 0 15px 0;
 }
 
 .etch-container {
@@ -107,16 +107,6 @@ input {
   box-shadow: 0 0 10px red;
 }
 
-/* .slider-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#slider {
-  margin-top: 3px;
-} */
-
 .colour-container {
   width: 350px;
   display: flex;
@@ -181,4 +171,28 @@ input {
 
 .reset-btn:hover {
   background-color: #1b7be9;
+}
+
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.github-link {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  align-items: center;
+}
+
+.github-img {
+  width: 20px;
+  height: auto;
+  margin: 5px 10px;
 }
